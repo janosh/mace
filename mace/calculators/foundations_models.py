@@ -28,10 +28,10 @@ def mace_mp(
             Alpha A Lee, Anubhav Jain, Kristin A Persson, 2023, arXiv:2308.14920
 
     Args:
-        device (str, optional): Device to use for the model. Defaults to "cuda".
         model (str, optional): Path to the model. Defaults to None which first checks for
             a local model and then downloads the default model from figshare. Specify "medium"
             or "large" to download a smaller or larger model from figshare.
+        device (str, optional): Device to use for the model. Defaults to "cuda".
         default_dtype (str, optional): Default dtype for the model. Defaults to "float32".
         **kwargs: Passed to MACECalculator.
 
@@ -81,7 +81,9 @@ def mace_mp(
 
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
 
-    return MACECalculator(model, device=device, default_dtype=default_dtype, **kwargs)
+    return MACECalculator(
+        models_paths=model, device=device, default_dtype=default_dtype, **kwargs
+    )
 
 
 def mace_anicc(
