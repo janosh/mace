@@ -89,7 +89,7 @@ def mace_mp(
 
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
     mace_calc = MACECalculator(
-        models_paths=model, device=device, default_dtype=default_dtype, **kwargs
+        model_paths=model, device=device, default_dtype=default_dtype, **kwargs
     )
     if dispersion:
         try:
